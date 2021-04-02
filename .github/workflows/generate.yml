@@ -1,0 +1,38 @@
+name: Generation
+
+on:
+  push:
+    branches: [ "*" ]
+  schedule:
+    - cron: "0 0 * * 6" # At 00:00 on Saturday
+    
+jobs:
+  generate-readme:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Compiler
+      run: |-
+        sudo apt-get update
+        sudo apt-get install -y \
+          tcc \
+          gcc \
+          clang \
+          python3 \
+          golang \
+          rustc
+        
+    - name: Generate README.md
+      run: go run ./tools/generate.go > README.md
+      
+    - name: Commit & Push
+      run: |-
+        git config --global user.email "${{ secrets.GIT_EMAIL }}"
+        git config --global user.name  "${{ secrets.GIT_NAME  }}"
+        git fetch --unshallow origin
+        git remote add codeberg https://${{ secrets.CODEBERG_AUTH_USERNAME }}:${{ secrets.CODEBERG_AUTH_PASSWORD }}@codeberg.org/${{ secrets.CODEBERG_REPO }}.git
+        git add README.md
+        git commit -m 'Update "README.md"'
+        git push codeberg main
+        git push origin main
