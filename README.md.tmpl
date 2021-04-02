@@ -1,0 +1,16 @@
+## Compiler Analyses
+
+<!-- Please edit the `README.md.tmpl` file instead of the `README.md` -->
+
+These are tables that analyse different compilers for different languages.
+
+#### Time
+
+|Language/Compiler|Command|Time|
+|-----------------|-------|----|
+{{ $command := "tcc code/hello_world.c" }}|C (`tcc`)|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ $command := "gcc code/hello_world.c" }}|C (`gcc`)|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ $command := "cc code/hello_world.c" }}|C (`cc`)|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ $command := "python3 -m py_compile code/hello_world.py" }}|Python|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ $command := "go build code/hello_world.go" }}|Go|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ $command := "rustc code/hello_world.rs" }}|Rust|`{{ $command }}`|`{{ $command | calcTime }}`|
