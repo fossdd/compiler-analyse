@@ -25,3 +25,14 @@ These are tables that analyse different compilers for different languages.
 {{ $command := "python3 code/hello_world.py" }}|Python|`{{ $command }}`|`{{ $command | calcTime }}`|
 {{ "go build code/hello_world.go" | run_command }}{{ $command := "./hello_world" }}|Go|`{{ $command }}`|`{{ $command | calcTime }}`|
 {{ "rustc code/hello_world.rs" | run_command }}{{ $command := "./hello_world" }}|Rust|`{{ $command }}`|`{{ $command | calcTime }}`|
+
+#### Binary Size
+
+|Language/Compiler|Size|
+|-----------------|----|
+{{ "tcc code/hello_world.c" | run_command }}|C (`tcc`)|`{{ "a.out" | calcSize }}`|
+{{ "gcc code/hello_world.c" | run_command }}|C (`gcc`)|`{{ "a.out" | calcSize }}`|
+{{ "cc code/hello_world.c" | run_command }}|C (`cc`)|`{{ "a.out" | calcSize }}`|
+{{ "python3 -m py_compile code/hello_world.py" | run_command }}|Python|`{{ "code/__pycache__/*" | calcSize }}`|
+{{ "go build code/hello_world.go" | run_command }}|Go|`{{ "hello_world" | calcSize }}`|
+{{ "rustc code/hello_world.rs" | run_command }}|Rust|`{{ "hello_world" | calcSize }}`|

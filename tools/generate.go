@@ -10,6 +10,7 @@ func main() {
 	fmap := template.FuncMap{
 		"calcTime": calcTime,
 		"run_command": run_command,
+		"calcSize": calcSize,
 	}
 	t := template.Must(template.New("README.md.tmpl").Funcs(fmap).ParseFiles("README.md.tmpl"))
 	err := t.Execute(os.Stdout, nil)
@@ -20,6 +21,18 @@ func main() {
 
 func calcTime(command string) string {
 	cmd := exec.Command("/bin/bash", "tools/calcTime.sh", command)
+
+	stdout, err := cmd.Output()
+
+	if err != nil {
+		panic(err)
+	}
+
+	return string(stdout)
+}
+
+func calcSize(command string) string {
+	cmd := exec.Command("/bin/bash", "tools/calcSize.sh", command)
 
 	stdout, err := cmd.Output()
 
