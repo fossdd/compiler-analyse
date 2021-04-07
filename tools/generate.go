@@ -9,6 +9,7 @@ import (
 func main() {
 	fmap := template.FuncMap{
 		"calcTime": calcTime,
+		"run_command": run_command,
 	}
 	t := template.Must(template.New("README.md.tmpl").Funcs(fmap).ParseFiles("README.md.tmpl"))
 	err := t.Execute(os.Stdout, nil)
@@ -27,4 +28,9 @@ func calcTime(command string) string {
 	}
 
 	return string(stdout)
+}
+
+func run_command(command string) string {
+	exec.Command("/bin/bash", command)
+	return ""
 }

@@ -4,7 +4,7 @@
 
 These are tables that analyse different compilers for different languages.
 
-#### Time
+#### Build Time
 
 |Language/Compiler|Command|Time|
 |-----------------|-------|----|
@@ -14,3 +14,14 @@ These are tables that analyse different compilers for different languages.
 {{ $command := "python3 -m py_compile code/hello_world.py" }}|Python|`{{ $command }}`|`{{ $command | calcTime }}`|
 {{ $command := "go build code/hello_world.go" }}|Go|`{{ $command }}`|`{{ $command | calcTime }}`|
 {{ $command := "rustc code/hello_world.rs" }}|Rust|`{{ $command }}`|`{{ $command | calcTime }}`|
+
+#### Run Time
+
+|Language/Compiler|Command|Time|
+|-----------------|-------|----|
+{{ "tcc code/hello_world.c" | run_command }}{{ $command := "./a.out" }}|C (`tcc`)|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ "gcc code/hello_world.c" | run_command }}{{ $command := "./a.out" }}|C (`gcc`)|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ "cc code/hello_world.c" | run_command }}{{ $command := "./a.out" }}|C (`cc`)|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ $command := "python3 code/hello_world.py" }}|Python|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ "go build code/hello_world.go" | run_command }}{{ $command := "./hello_world" }}|Go|`{{ $command }}`|`{{ $command | calcTime }}`|
+{{ "rustc code/hello_world.rs" | run_command }}{{ $command := "./hello_world" }}|Rust|`{{ $command }}`|`{{ $command | calcTime }}`|
