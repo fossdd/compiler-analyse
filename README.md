@@ -8,12 +8,12 @@ These are tables that analyse different compilers for different languages.
 
 |Language/Compiler|Command|Time|
 |-----------------|-------|----|
-|C (`tcc`)|`tcc code/hello_world.c`|`0m0.013s`|
-|C (`gcc`)|`gcc code/hello_world.c`|`0m0.122s`|
-|C (`cc`)|`cc code/hello_world.c`|`0m0.037s`|
+|C (`tcc`)|`tcc code/hello_world.c`|`0m0.014s`|
+|C (`gcc`)|`gcc code/hello_world.c`|`0m0.250s`|
+|C (`cc`)|`cc code/hello_world.c`|`0m0.038s`|
 |Python|`python3 -m py_compile code/hello_world.py`|`0m0.026s`|
-|Go|`go build code/hello_world.go`|`0m0.231s`|
-|Rust|`rustc code/hello_world.rs`|`0m0.618s`|
+|Go|`go build code/hello_world.go`|`0m0.264s`|
+|Rust|`rustc code/hello_world.rs`|`0m5.206s`|
 
 #### Run Time
 
